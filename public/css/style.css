@@ -3,7 +3,7 @@
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #222;
+    background-color: #000;
     color: #fff;
 }
 
@@ -13,8 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #222;
-    border-bottom: 1px solid #F6982D;
+    background-color: #000;
 }
 
 #navbar ul{
@@ -26,13 +25,17 @@
     margin-left: 1em;
 }
 
+#logo a {
+    width: 50%;
+}
+
 #navbar ul li a{
     text-decoration: none;
     transition: 0.5s;
 }
 
 #navbar ul li a:hover{
-    color: #F6982D;
+    color: #42C920;
 }
 
 .container{
@@ -45,4 +48,64 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Login e Register*/
+
+.auth-container{
+    max-width: 450px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container h2{
+    margin-bottom: 1em;
+    color: #fff;
+    width: 100px;
+    
+}
+
+.auth-container a{
+    color: #42C920;
+}
+
+.form-control{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.form-control label{
+    margin-bottom: 0.5em;
+}
+
+.form-control input,
+.form-control textarea{
+    padding: 7px;
+    border-radius: 10px;
+}
+form input[type = 'submit'],
+.btn{
+    background: transparent;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-size: 1em;
+    color: #fff;
+    border-radius: 5px;
+    border-color: #42C920;
+    cursor: pointer;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    text-decoration: none;
+    transition: .5s;
+}
+
+form input[type = 'submit']:hover,
+.btn:hover {
+    background: #42C920;
+    color: #000;
+    font-weight: bold;
 }
