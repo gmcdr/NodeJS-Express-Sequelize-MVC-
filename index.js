@@ -15,6 +15,7 @@ const User = require('./models/User')
 
 //Import Routes
  const toughtsRoutes = require('./routes/toughtsRoutes')
+ const authRoutes = require('./routes/authRoutes')
 
 //Require da conexção com o banco
 const conn = require('./db/conn')
@@ -74,6 +75,7 @@ app.use(flash())
 
 //Routes
 app.use('/toughts', toughtsRoutes)
+app.use('/', authRoutes)
 
 app.get('/', ToughtsController.showToughts)
 
