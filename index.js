@@ -9,19 +9,19 @@ const flash = require('express-flash')
 const app = express()
 
 //Models
-const Tought = require('./models/Tought')
+const Tips = require('./models/Tips')
 const User = require('./models/User')
 
 
 //Import Routes
- const toughtsRoutes = require('./routes/toughtsRoutes')
+ const tipsRoutes = require('./routes/tipsRoutes')
  const authRoutes = require('./routes/authRoutes')
 
 //Require da conexção com o banco
 const conn = require('./db/conn')
 
 //Import Controller
-const ToughtsController = require('./controllers/ToughtsController')
+const TipsController = require('./controllers/TipsController')
 
 
 //Template engine
@@ -74,10 +74,10 @@ app.use(flash())
 
 
 //Routes
-app.use('/toughts', toughtsRoutes)
+app.use('/tips', tipsRoutes)
 app.use('/', authRoutes)
 
-app.get('/', ToughtsController.showToughts)
+app.get('/', TipsController.showTips)
 
 //Criar conexção
 conn

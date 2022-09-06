@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize'); //Chamar modelo do require
 
 //Definir a conexção
-const sequelize = new Sequelize('thoughts', 'postgres', '', {
+const sequelize = new Sequelize('tips', 'postgres', '', {
     host: 'localhost',
     dialect: 'postgres'
 });

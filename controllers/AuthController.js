@@ -32,17 +32,24 @@ module.exports = class AuthController {
             return
         }
 
-        const createdUser = await User.create(user)
 
-        //Initialaze Session
-        req.session.userId = user.id
+        try {
+            const createdUser = await User.create(user)
 
-        req.flash('message', 'Login realizado com sucesso!')
-        
+          
+            //Initialaze Session
+            req.session.userid = createdUser.id
+    
+            req.flash('message', 'Login realizado com sucesso!')
+            
+    
+            req.session.save(()=> {
+                res.redirect('/')
+            })
 
-        req.session.save(()=> {
-            res.redirect('/')
-        })
+        } catch (error) {
+            console.log(error)
+        }
         
     }
 
@@ -63,8 +70,8 @@ module.exports = class AuthController {
         if (password != confirmpassword) {
             req.flash('error', 'As senhas não conferem, tente novamente!')
             res.render('auth/register')
-            return
-        }
+          
+        } 
 
         // check user exists
         const checkIfUserExists = await User.findOne({where: {email: email}})
