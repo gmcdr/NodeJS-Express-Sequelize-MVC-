@@ -3,8 +3,14 @@ const User = require('../models/User')
 
 
 module.exports = class TipsController{
-    static showTips(req, res) {
-        res.render('tips/home')
+    static async showTips(req, res) {
+        const tipsData = await Tips.findAll({
+            include: User,
+        })
+
+        const tips = tipsData.map((result) => result.get({plain: true}))
+
+        res.render('tips/home', {tips})
     }
 
     static async dashboard(req, res){
@@ -17,6 +23,12 @@ module.exports = class TipsController{
         }
 
         const tips = user.Tips.map((result) => result.dataValues)
+
+        let emptyTips = false
+
+        if (tips.lenght === 0) {
+             emptyTips = true;
+        }
 
         console.log(tips)
 
@@ -73,6 +85,40 @@ module.exports = class TipsController{
             console.log(error)
         }
 
+    }
+
+    static async updateTip(req, res){
+          
+        const id = req.params.id
+
+        const tips = await Tips.findOne({where: {id: id}, raw: true})
+
+
+        res.render('tips/edit', tips)
+    }
+
+    static async updateTipSave(req, res){
+        
+        const id = req.body
+
+        const tip = {
+            title: req.body.title,
+        }
+
+
+        try {
+            await Tips.update(tip, {where: {id: id}})
+
+            req.flash('message', 'Dica atualizada com sucesso!')
+                
+            req.session.save(() => {
+                res.redirect('/tips/dashboard')
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
+ 
     }
 
 }

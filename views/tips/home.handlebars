@@ -1,1 +1,13 @@
-<h1>Todas as dicas</h1>
+<div class="home-header">
+    <h1>Todas as dicas</h1>
+</div>
+<div class="tips-container">
+    {{#each tips}}
+        <figure>
+            <blockquote>
+                "{{this.title}}"
+            </blockquote>
+        </figure>
+    {{/each}}
+</div>
+
